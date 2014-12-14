@@ -1,0 +1,10 @@
+<form ng-submit="search.doSearch()">
+    <input type="text" ng-model="search.query" ng-required />
+    <button type="submit">Search</button>
+</form>
+<ul ng-show="search.results">
+    <li ng-repeat="result in search.results">
+        <img ng-src="https://image.tmdb.org/t/p/w92{{result.poster_path}}"/>
+        {{result.title}}
+    </li>
+</ul>

@@ -1,10 +1,12 @@
 var gulp = require('gulp'),
   clean = require('gulp-clean'),
   concat = require('gulp-concat'),
+  connect = require('gulp-connect'),
   runSequence = require('run-sequence'),
   tsc = require('gulp-tsc');
 
-var paths = {
+var port = 3000,
+  paths = {
   indexHtml: './app/index.html',
   ts: './app/ts/app.ts',
   jsLib: [
@@ -24,6 +26,7 @@ var paths = {
 gulp.task('default', function (callback) {
   runSequence('clean',
     ['build-ts', 'build-js-lib', 'build-html'],
+    'dev-server',
     callback);
 });
 
@@ -34,9 +37,11 @@ gulp.task('build-ts', function () {
       out: 'app.js',
       outDir: paths.dist.js,
       removeComments: true,
+      //sourcePath: '../../app/ts',
+      //sourcemap: true,
       target: 'ES5'
     }))
-    .pipe(gulp.dest(paths.dist.js))
+    .pipe(gulp.dest(paths.dist.js));
 });
 
 gulp.task('build-js-lib', function () {
@@ -56,7 +61,15 @@ gulp.task('build-html', function () {
 gulp.task('build-style', function(){
   return gulp.src(paths.styles)
     .pipe(gulp.dest(paths.dist.styles));
-})
+});
+
+gulp.task('dev-server', function () {
+  connect.server({
+    root: 'dist',
+    port: port,
+    livereload: true
+  });
+});
 
 gulp.task('clean', function () {
   return gulp.src('./dist/*', {read: false})
