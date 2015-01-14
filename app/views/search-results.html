@@ -1,0 +1,9 @@
+<ul class="search-results" ng-show="search.results">
+    <li class="search-result" ng-repeat="result in search.results">
+        <a class="search-result-link" ng-href="#/movie/{{result.id}}">
+            <img class="search-result-poster" ng-src="https://image.tmdb.org/t/p/w92{{result.poster_path}}"/>
+            <div class="search-result-title">{{result.title}}</div>
+            <div class="search-result-release">({{result.release_date.substr(0, 4)}})</div>
+        </a>
+    </li>
+</ul>

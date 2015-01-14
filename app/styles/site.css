@@ -1,0 +1,72 @@
+body{
+  background: dodgerblue;
+}
+
+ul, li{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.search-results{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.search-result{
+  width: 300px;
+  height: 138px;
+  margin: 7px;
+  padding: 10px;
+  position: relative;
+  color: black;
+  background: white;
+  border: 5px groove navy;
+}
+
+.search-result-link{
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.search-result-poster{
+  position: absolute;
+  top: 10px;
+  left: 5px;
+  bottom: 10px;
+  height: 138px;
+  width: 92px;
+  background: red;
+}
+
+.search-result-title{
+  position: absolute;
+  top: 5px;
+  left: 100px;
+  font-size: 1.3em;
+}
+
+.search-result-release{
+  position: absolute;
+  bottom: 10px;
+  left: 100px;
+}
+
+.movie-poster, .movie-info {
+  float: left;
+}
+
+.movie-info {
+  margin-left: 20px;
+}
+
+.movie-title{
+  font-size: 2em;
+}
+
+.movie-tagline{
+  margin-top: 5px;
+  margin-bottom: 15px;
+}

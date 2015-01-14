@@ -10,18 +10,21 @@ var port = 3000,
   indexHtml: './app/index.html',
   ts: './app/ts/app.ts',
   tsWatch: './app/ts/**/*.ts',
+  images: './app/images/**/*',
   jsLib: [
     './bower_components/jquery/dist/jquery.js',
-    './bower_components/angular/angular.js'
+    './bower_components/angular/angular.js',
+    './bower_components/angular-route/angular-route.js'
   ],
-  views: './app/views/**/*.html',
-  styles: './app/styles/**/*',
-  dist: {
-    root: './dist',
-    js: './dist/js',
-    views: './dist/views',
-    styles: './dist/styles'
-  }
+    views: './app/views/**/*.html',
+    dist: {
+      root: './dist',
+      js: './dist/js',
+      views: './dist/views',
+      images: './dist/images',
+      styles: './dist/styles'
+    },
+    styles: './app/styles/**/*'
 };
 
 gulp.task('debug', function (callback) {
@@ -29,11 +32,11 @@ gulp.task('debug', function (callback) {
     'watch',
     'dev-server',
     callback);
-})
+});
 
 gulp.task('default', function (callback) {
   runSequence('clean',
-    ['build-ts', 'build-js-lib', 'build-html'],
+    ['build-ts', 'build-js-lib', 'build-html', 'build-style'],
     callback);
 });
 
@@ -73,6 +76,9 @@ gulp.task('build-ts', function () {
 });
 
 gulp.task('build-style', function(){
+  gulp.src(paths.images)
+    .pipe(gulp.dest(paths.dist.images));
+
   return gulp.src(paths.styles)
     .pipe(gulp.dest(paths.dist.styles))
     .pipe(connect.reload());
@@ -92,7 +98,8 @@ gulp.task('refresh', function () {
 
 gulp.task('watch', function () {
   gulp.watch(paths.tsWatch, ['build-ts']);
-  gulp.watch(paths.html, ['build-html']);
+  gulp.watch(paths.views, ['build-html']);
   gulp.watch(paths.indexHtml, ['build-html']);
   gulp.watch(paths.styles, ['build-style']);
+  gulp.watch(paths.images, ['build-style']);
 });

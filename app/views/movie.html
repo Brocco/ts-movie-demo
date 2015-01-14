@@ -1,0 +1,13 @@
+<div class="movie-poster">
+    <div><img ng-src="https://image.tmdb.org/t/p/w396{{movie.movie.poster_path}}"/></div>
+    <div><img ng-src="https://image.tmdb.org/t/p/w396{{movie.movie.backdrop_path}}"/></div>
+</div>
+<div class="movie-info">
+    <ul>
+        <li class="movie-title">{{movie.movie.title}}</li>
+        <li class="movie-tagline">{{movie.movie.tagline}}</li>
+        <li>Released: {{movie.movie.release_date.substr(0, 4)}}</li>
+        <li>Budget: {{movie.movie.budget | currency}}</li>
+        <li>Budget: {{movie.movie.revenue | currency}}</li>
+    </ul>
+</div>

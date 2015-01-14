@@ -1,21 +1,22 @@
 module TMDB{
     export class SearchController{
-        static $inject = ['searchService'];
-        constructor (searchService: ISearchService){
+        static $inject = ['$location', 'searchService'];
+        constructor ($location: ng.ILocationService,
+                     searchService: ISearchService){
+            this.$location = $location;
             this.searchService = searchService;
             this.query = '';
         }
 
+        private $location: ng.ILocationService;
         private searchService: ISearchService;
+
         public query: string;
         public results: IMovieSearchResult[];
 
         doSearch(){
-            var self = this;
-            this.searchService.searchMovies({query: self.query})
-                .then(function(movieResults){
-                    self.results = movieResults.results;
-                })
+            this.$location.path('/search/' + this.query);
+            this.query = '';
         }
     }
 }
