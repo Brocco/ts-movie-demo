@@ -1,6 +1,8 @@
 ts-movie-demo
 =============
 
+Demo application for an intro to TypeScript talk
+
 Reference Items:
 https://www.themoviedb.org/talk/548139e09251416e81004f17
 
